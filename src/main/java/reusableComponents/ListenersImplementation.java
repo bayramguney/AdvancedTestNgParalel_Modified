@@ -28,7 +28,7 @@ import testBase.ExtentReportNG;
  * @LinkedIn: https://www.linkedin.com/in/panarkhede89/
  */
 public class ListenersImplementation implements ITestListener{
-	JiraOperations jiraOps = new JiraOperations();
+
 	static ExtentReports report;
 		   ExtentTest test;
 		   
@@ -69,23 +69,7 @@ public class ListenersImplementation implements ITestListener{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		///////JIRA defect creation part
-		String automaticJIRAcreation = PropertiesOperations.getPropertyValueByKey("automatic_Issue_Creation_In_JIRA");
-		if(automaticJIRAcreation.trim().equalsIgnoreCase("ON")) {
-			String issueS = "Automation Test Failed - "+result.getMethod().getMethodName();
-			String issueD = "Test Data to be passed here.";
-			String issueNumber = null;
-			try {
-				issueNumber = jiraOps.createJiraIssue("QDPM", issueS, issueD, "10000", "5", "QDPM", "SIT", "5f782c4b95fe8e0069705791");
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-			try {
-				jiraOps.addAttachmentToJiraIssue(issueNumber, screenshotPath);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+
 
 	}
 

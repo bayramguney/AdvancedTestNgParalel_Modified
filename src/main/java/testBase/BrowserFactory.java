@@ -1,8 +1,4 @@
-/**
- * Author: Prakash Narkhede
- * Blog: www.AutomationTalks.com
- * LinkedIn: https://www.linkedin.com/in/panarkhede89/
- */
+
 package testBase;
 
 import java.net.MalformedURLException;
@@ -26,8 +22,8 @@ public class BrowserFactory {
 	//create webdriver object for given browser
 	public WebDriver createBrowserInstance(String browser) throws MalformedURLException {
 
-	//	WebDriver driver = null;
-		RemoteWebDriver driver = null;
+		WebDriver driver = null;
+
 
 		if(browser.equalsIgnoreCase("Chrome")) {
 
@@ -42,13 +38,10 @@ public class BrowserFactory {
 		}else if (browser.equalsIgnoreCase("firefox")) {
 
 			WebDriverManager.firefoxdriver().setup();
-		//	FirefoxOptions foptions = new FirefoxOptions();
-		//	foptions.addArguments("-private");
+			FirefoxOptions foptions = new FirefoxOptions();
+			foptions.addArguments("-private");
 			
-			driver = new RemoteWebDriver(new URL("http:192.168.225.219:4444/wd/hub"), DesiredCapabilities.firefox());		        
-
-			
-			//driver = new FirefoxDriver(foptions);
+			driver = new FirefoxDriver(foptions);
 
 		} if (browser.equalsIgnoreCase("ie")) {
 

@@ -2,11 +2,7 @@ package testBase;
 
 import com.aventstack.extentreports.ExtentTest;
 
-/**
- * @author: Prakash Narkhede
- * @Youtube: https://www.youtube.com/automationtalks
- * @LinkedIn: https://www.linkedin.com/in/panarkhede89/
- */
+
 public class ExtentFactory {
 	//Singleton design Pattern
 	//private constructor so that no one else can create object of this class

@@ -8,11 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import reusableComponents.ActionEngine;
 import reusableComponents.PropertiesOperations;
 
-/**
- * @author: Prakash Narkhede
- * @Youtube: https://www.youtube.com/automationtalks
- * @LinkedIn: https://www.linkedin.com/in/panarkhede89/
- */
+
 public class TestBase extends ActionEngine {
 	BrowserFactory bf = new BrowserFactory();
 

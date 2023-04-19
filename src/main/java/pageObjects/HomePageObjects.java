@@ -10,27 +10,28 @@ import org.testng.Assert;
 import testBase.DriverFactory;
 import testBase.TestBase;
 
-public class HomePageObjects extends TestBase{
+import java.util.*;
+
+public class HomePageObjects extends TestBase {
 
 
-	By sidebarMenu_Dashboard = By.xpath("//ul[@class='page-sidebar-menu']//i/following-sibling::span[text()='Dashboard']");
+    By seach_field = By.cssSelector("[name='q']");
+    By google_search=By.cssSelector("[value='Google Search']");
 
-	//click on menu bar - by passing name of menu
-	public void clickOnSideMenu(String menu) {
-		String MenuXpath = "//ul[@class='page-sidebar-menu']//i/following-sibling::span[text()='"+menu+"']";
-		DriverFactory.getInstance().getDriver().findElement(By.xpath(MenuXpath)).click();
-	}
+    By sites=By.xpath("//div[@jsname='yEVEwb']");
 
-	//click on sub menu bar - by passing name of menu
-	public void clickOnSideSubMenu(String menu, String submenu) {
-		String MenuXpath = "//ul[@class='page-sidebar-menu']//i/following-sibling::span[text()='"+menu+"']";
-		DriverFactory.getInstance().getDriver().findElement(By.xpath(MenuXpath)).click();
-		String submenuXpath="//ul[@class='page-sidebar-menu']//i/following-sibling::span[text()='"+menu+"']/ancestor::a/following-sibling::ul//span[text()='"+submenu+"']";
-		DriverFactory.getInstance().getDriver().findElement(By.xpath(submenuXpath)).click();
-	}
+    public void search() throws InterruptedException {
+        sendKeys_custom(DriverFactory.getInstance().getDriver().findElement(seach_field), "search_field", "Selenium");
+        click_custom(DriverFactory.getInstance().getDriver().findElement(google_search),"google_search" );
+        Thread.sleep(3000);
+    }
 
-	public void checkIfDashBoardPageIsOpened() {
-		Assert.assertTrue(isElementPresent_custom(DriverFactory.getInstance().getDriver().findElement(sidebarMenu_Dashboard), "DashBoardMenu"));
-	}
+    public void validatetitle() throws Throwable {
+        List<WebElement> titles=DriverFactory.getInstance().getDriver().findElements(sites);
+        for (WebElement each:titles) {
+            assertIncludeString_custom("Selenium",each.getText(),"Sponsored Article");
+        }
+
+    }
 
 }
