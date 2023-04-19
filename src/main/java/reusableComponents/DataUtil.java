@@ -4,11 +4,8 @@ import java.util.Hashtable;
 import org.testng.annotations.DataProvider;
 
 public class DataUtil {
-
-
-
     @DataProvider
-    public static Object[][] getData(ExcelReader excel,String sheetName) {
+    public static Object[][] getData(ExcelReader excel) {
 
         int rows = excel.getRowCount(PropertiesOperations.getPropertyValueByKey("sheetName"));
 
@@ -17,7 +14,7 @@ public class DataUtil {
         int dataStartRowNum =2;
 
         int testRows = 0;
-        while (!excel.getCellData(sheetName, 0, dataStartRowNum + testRows).equals("")) {
+        while (!excel.getCellData(PropertiesOperations.getPropertyValueByKey("sheetName"), 0, dataStartRowNum + testRows).equals("")) {
 
             testRows++;
         }
@@ -26,7 +23,7 @@ public class DataUtil {
         int colStartColNum = 1;
         int testCols = 0;
 
-        while (!excel.getCellData(sheetName ,testCols, colStartColNum).equals("")) {
+        while (!excel.getCellData(PropertiesOperations.getPropertyValueByKey("sheetName") ,testCols, colStartColNum).equals("")) {
 
             testCols++;
 
@@ -43,8 +40,8 @@ public class DataUtil {
 
             for (int cNum = 0; cNum < testCols; cNum++) {
 
-                String testData = excel.getCellData(sheetName, cNum, rNum);
-                String colName = excel.getCellData(sheetName, cNum, colStartColNum);
+                String testData = excel.getCellData(PropertiesOperations.getPropertyValueByKey("sheetName"), cNum, rNum);
+                String colName = excel.getCellData(PropertiesOperations.getPropertyValueByKey("sheetName"), cNum, colStartColNum);
 
                 table.put(colName, testData);
 
