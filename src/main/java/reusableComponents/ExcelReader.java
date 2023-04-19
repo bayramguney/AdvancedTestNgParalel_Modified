@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import org.apache.poi.common.usermodel.HyperlinkType;
 
@@ -33,13 +34,14 @@ public class ExcelReader {
     private XSSFRow row   =null;
     private XSSFCell cell = null;
 
+
     public ExcelReader(String path) {
 
         this.path=path;
         try {
             fis = new FileInputStream(path);
             workbook = new XSSFWorkbook(fis);
-            sheet = workbook.getSheetAt(0);
+            sheet = workbook.getSheet(PropertiesOperations.getPropertyValueByKey("sheetName"));
             fis.close();
         } catch (Exception e) {
 
@@ -501,17 +503,17 @@ public class ExcelReader {
 
 
     // to run this on stand alone
-    public static void main(String arg[]) throws IOException{
-
-
-        ExcelReader datatable = null;
-
-
-        datatable = new ExcelReader("C:\\CM3.0\\app\\test\\Framework\\AutomationBvt\\src\\config\\xlfiles\\Controller.xlsx");
-        for(int col=0 ;col< datatable.getColumnCount("TC5"); col++){
-            System.out.println(datatable.getCellData("TC5", col, 1));
-        }
-    }
+//    public static void main(String arg[]) throws IOException{
+//
+//
+//        ExcelReader datatable = null;
+//
+//
+//        datatable = new ExcelReader("C:\\CM3.0\\app\\test\\Framework\\AutomationBvt\\src\\config\\xlfiles\\Controller.xlsx");
+//        for(int col=0 ;col< datatable.getColumnCount("TC5"); col++){
+//            System.out.println(datatable.getCellData("TC5", col, 1));
+//        }
+//    }
 
 
 }
