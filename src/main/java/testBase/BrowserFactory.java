@@ -26,7 +26,7 @@ public class BrowserFactory {
 	//create webdriver object for given browser
 	public WebDriver createBrowserInstance(String browser) throws MalformedURLException {
 
-	//	WebDriver driver = null;
+		//WebDriver driver = null;
 		RemoteWebDriver driver = null;
 
 		if(browser.equalsIgnoreCase("Chrome")) {
